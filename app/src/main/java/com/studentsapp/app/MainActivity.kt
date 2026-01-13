@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnGoToStudents.setOnClickListener {
             val intent = Intent(this, StudentsListActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

@@ -1,10 +1,11 @@
 package com.studentsapp.app.controller
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.studentsapp.app.databinding.ActivityAddStudentBinding
+import com.studentsapp.app.model.Student
+import com.studentsapp.app.model.StudentsRepository
 
 class AddStudentActivity : AppCompatActivity() {
 
@@ -15,9 +16,14 @@ class AddStudentActivity : AppCompatActivity() {
         binding = ActivityAddStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.btnSave.setOnClickListener {
             val name = binding.etName.text.toString().trim()
             val id = binding.etId.text.toString().trim()
+            val phone = binding.etPhone.text.toString().trim()
+            val address = binding.etAddress.text.toString().trim()
             val selected = binding.cbSelected.isChecked
 
             if (name.isEmpty() || id.isEmpty()) {
@@ -26,18 +32,33 @@ class AddStudentActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val data = Intent().apply {
-                putExtra("student_name", name)
-                putExtra("student_id", id)
-                putExtra("student_selected", selected)
+            val student = Student(
+                id = id,
+                name = name,
+                phone = phone,
+                address = address,
+                isSelected = selected
+            )
+
+            val added = StudentsRepository.addStudent(student)
+            if (!added) {
+                binding.etId.error = "ID already exists"
+                return@setOnClickListener
             }
 
-            setResult(Activity.RESULT_OK, data)
+            setResult(Activity.RESULT_OK)
             finish()
         }
 
         binding.btnCancel.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
             finish()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        setResult(Activity.RESULT_CANCELED)
+        finish()
+        return true
     }
 }
