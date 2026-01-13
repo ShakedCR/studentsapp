@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentsApp">
         <activity
+            android:name=".controller.AddStudentActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,6 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".controller.StudentsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controller.AddStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controller.EditStudentActivity"
+            android:exported="false" />
+
+
     </application>
 
 </manifest>
