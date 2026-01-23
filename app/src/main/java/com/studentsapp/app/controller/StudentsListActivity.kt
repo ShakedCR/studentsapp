@@ -50,6 +50,13 @@ class StudentsListActivity : AppCompatActivity() {
             },
             onDeleteClick = { position ->
                 showDeleteDialog(position)
+            },
+                    onItemClick = { position ->
+                val student = students[position]
+                val intent = Intent(this, StudentDetailsActivity::class.java).apply {
+                    putExtra("extra_student", student)
+                }
+                startActivity(intent)
             }
         )
 

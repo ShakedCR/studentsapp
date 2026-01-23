@@ -13,7 +13,8 @@ import com.studentsapp.app.model.Student
 class StudentsAdapter(
     private val students: MutableList<Student>,
     private val onEditClick: (position: Int) -> Unit,
-    private val onDeleteClick: (position: Int) -> Unit
+    private val onDeleteClick: (position: Int) -> Unit,
+    private val onItemClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<StudentsAdapter.StudentVH>() {
 
     class StudentVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -50,6 +51,11 @@ class StudentsAdapter(
         holder.btnDelete.setOnClickListener {
             val adapterPos = holder.adapterPosition
             if (adapterPos != RecyclerView.NO_POSITION) onDeleteClick(adapterPos)
+        }
+
+        holder.itemView.setOnClickListener {
+            val adapterPos = holder.adapterPosition
+            if (adapterPos != RecyclerView.NO_POSITION) onItemClick(adapterPos)
         }
     }
 
