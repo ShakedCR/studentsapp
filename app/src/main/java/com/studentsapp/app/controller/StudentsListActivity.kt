@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.studentsapp.app.databinding.ActivityStudentsListBinding
 import com.studentsapp.app.model.StudentsRepository
 import com.studentsapp.app.view.StudentsAdapter
+import com.studentsapp.app.model.Student
+
 
 class StudentsListActivity : AppCompatActivity() {
 
@@ -27,9 +29,27 @@ class StudentsListActivity : AppCompatActivity() {
 
     private val editStudentLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            adapter.notifyDataSetChanged()
+            if (result.resultCode != Activity.RESULT_OK || result.data == null) return@registerForActivityResult
+
+            val position = result.data!!.getIntExtra(EditStudentActivity.EXTRA_POSITION, -1)
+            val isDelete = result.data!!.getBooleanExtra(EditStudentActivity.EXTRA_DELETE, false)
+
+            if (position != -1) {
+                if (isDelete) {
+                    // Remove student from repository
+                    StudentsRepository.deleteStudentByIndex(position)
+                    adapter.notifyItemRemoved(position)
+                } else {
+                    // Update student in repository
+                    val updatedStudent = result.data!!.getParcelableExtra<Student>(EditStudentActivity.EXTRA_UPDATED_STUDENT)
+                    if (updatedStudent != null) {
+                        StudentsRepository.updateStudentByIndex(position, updatedStudent)
+                        adapter.notifyItemChanged(position)
+                    }
+                }
+            }
         }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
