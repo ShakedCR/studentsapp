@@ -7,4 +7,24 @@
     <string name="update">Update</string>
     <string name="selected">Selected</string>
     <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="selected1">Selected</string>
+    <string name="address1">Address</string>
+    <string name="phone1">Phone</string>
+    <string name="id">ID</string>
+    <string name="name1">Name</string>
+    <string name="welcome">Welcome</string>
+    <string name="show_students">Show Students</string>
+    <string name="address2">Address:</string>
+    <string name="id2">ID:</string>
+    <string name="name2">Name</string>
+    <string name="phone2">Phone:</string>
+    <string name="selected2">Selected</string>
+    <string name="add_student">Add Student</string>
+    <string name="students">Students</string>
+    <string name="delete1">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="_123456789">123456789</string>
+    <string name="student_name">Student Name</string>
 </resources>
