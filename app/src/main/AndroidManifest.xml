@@ -26,6 +26,14 @@
             android:name=".controller.AddStudentActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".controller.EditStudentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".controller.StudentDetailsActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
