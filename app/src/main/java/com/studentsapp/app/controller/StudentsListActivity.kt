@@ -43,15 +43,17 @@ class StudentsListActivity : AppCompatActivity() {
         adapter = StudentsAdapter(
             students = students,
             onEditClick = { position ->
+                val student = students[position]
                 val intent = Intent(this, EditStudentActivity::class.java).apply {
                     putExtra(EditStudentActivity.EXTRA_POSITION, position)
+                    putExtra(EditStudentActivity.EXTRA_STUDENT, student)
                 }
                 editStudentLauncher.launch(intent)
             },
             onDeleteClick = { position ->
                 showDeleteDialog(position)
             },
-                    onItemClick = { position ->
+            onItemClick = { position ->
                 val student = students[position]
                 val intent = Intent(this, StudentDetailsActivity::class.java).apply {
                     putExtra("extra_student", student)
