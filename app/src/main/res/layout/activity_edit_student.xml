@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:descendantFocusability="afterDescendants">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -19,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:descendantFocusability="afterDescendants">
 
         <EditText
             android:id="@+id/etName"
@@ -30,6 +32,8 @@
             android:hint="@string/name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             tools:ignore="VisualLintTextFieldSize" />
 
         <EditText
@@ -37,10 +41,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:autofillHints=""
             android:hint="@string/student_id"
-            android:inputType="number"
+            android:inputType="text"
             android:minHeight="48dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             tools:ignore="VisualLintTextFieldSize" />
 
         <EditText
@@ -48,10 +53,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:autofillHints=""
             android:hint="@string/address"
             android:inputType="textPostalAddress"
             android:minHeight="48dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             tools:ignore="VisualLintTextFieldSize" />
 
         <EditText
@@ -59,42 +65,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:autofillHints=""
             android:hint="@string/phone"
             android:inputType="phone"
             android:minHeight="48dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             tools:ignore="VisualLintTextFieldSize" />
 
         <CheckBox
             android:id="@+id/cbSelected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/selected"
-            android:layout_marginBottom="18dp"/>
+            android:layout_marginBottom="18dp"
+            android:text="@string/selected" />
 
         <LinearLayout
-            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnUpdate"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/update"
+                android:textColor="@android:color/white"
+                app:backgroundTint="?attr/colorPrimary"
                 tools:ignore="VisualLintButtonSize" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDelete"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:text="@string/delete"
-                android:layout_marginStart="12dp"
+                android:textColor="@android:color/white"
+                app:backgroundTint="?attr/colorPrimary"
                 tools:ignore="VisualLintButtonSize" />
         </LinearLayout>
 

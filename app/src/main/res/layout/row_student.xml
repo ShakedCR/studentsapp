@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp">
@@ -14,14 +15,15 @@
         android:src="@drawable/student"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="Student Name"
+        android:text="@string/student_name"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/ivStudent"
@@ -33,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="123456789"
+        android:text="@string/_123456789"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/tvName"
         app:layout_constraintTop_toBottomOf="@id/tvName"
@@ -55,7 +57,7 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:paddingHorizontal="12dp"
-        android:text="Edit"
+        android:text="@string/edit"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@id/btnDelete"
         app:layout_constraintTop_toTopOf="parent"
@@ -68,7 +70,7 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:paddingHorizontal="12dp"
-        android:text="Delete"
+        android:text="@string/delete1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

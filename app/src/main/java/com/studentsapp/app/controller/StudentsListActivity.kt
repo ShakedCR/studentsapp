@@ -1,6 +1,5 @@
 package com.studentsapp.app.controller
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,11 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.studentsapp.app.databinding.ActivityStudentsListBinding
+import com.studentsapp.app.model.Student
 import com.studentsapp.app.model.StudentsRepository
 import com.studentsapp.app.view.StudentsAdapter
-import com.studentsapp.app.model.Student
 
 
+@Suppress("DEPRECATION")
 class StudentsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStudentsListBinding
@@ -23,13 +23,13 @@ class StudentsListActivity : AppCompatActivity() {
 
     private val addStudentLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+            if (result.resultCode != RESULT_OK) return@registerForActivityResult
             adapter.notifyItemInserted(students.lastIndex)
         }
 
     private val editStudentLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK || result.data == null) return@registerForActivityResult
+            if (result.resultCode != RESULT_OK || result.data == null) return@registerForActivityResult
 
             val position = result.data!!.getIntExtra(EditStudentActivity.EXTRA_POSITION, -1)
             val isDelete = result.data!!.getBooleanExtra(EditStudentActivity.EXTRA_DELETE, false)

@@ -1,6 +1,5 @@
 package com.studentsapp.app.controller
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.studentsapp.app.databinding.ActivityAddStudentBinding
@@ -46,18 +45,18 @@ class AddStudentActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            setResult(Activity.RESULT_OK)
+            setResult(RESULT_OK)
             finish()
         }
 
         binding.btnCancel.setOnClickListener {
-            setResult(Activity.RESULT_CANCELED)
+            setResult(RESULT_CANCELED)
             finish()
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        setResult(Activity.RESULT_CANCELED)
+        setResult(RESULT_CANCELED)
         finish()
         return true
     }
