@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">StudentsApp</string>
+    <string name="name">Name</string>
+    <string name="student_id">Student ID</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="update">Update</string>
+    <string name="selected">Selected</string>
+    <string name="delete">Delete</string>
 </resources>
