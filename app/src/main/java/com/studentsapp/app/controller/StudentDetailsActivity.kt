@@ -1,5 +1,6 @@
 package com.studentsapp.app.controller
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.studentsapp.app.databinding.ActivityStudentDetailsBinding
@@ -14,7 +15,22 @@ class StudentDetailsActivity : AppCompatActivity() {
         binding = ActivityStudentDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val student = intent.getParcelableExtra<Student>("extra_student")
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.toolbar.navigationIcon?.setTint(
+            getColor(android.R.color.white)
+        )
+
+
+        val student: Student? =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra("extra_student", Student::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableExtra("extra_student")
+            }
+
         if (student == null) {
             finish()
             return
@@ -25,5 +41,10 @@ class StudentDetailsActivity : AppCompatActivity() {
         binding.tvPhone.text = "Phone: ${student.phone.ifEmpty { "N/A" }}"
         binding.tvAddress.text = "Address: ${student.address.ifEmpty { "N/A" }}"
         binding.tvSelected.text = if (student.isSelected) "Selected" else "Not Selected"
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

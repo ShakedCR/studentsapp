@@ -3,7 +3,6 @@ package com.studentsapp.app.controller
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.studentsapp.app.databinding.ActivityEditStudentBinding
@@ -18,6 +17,13 @@ class EditStudentActivity : AppCompatActivity() {
         binding = ActivityEditStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.toolbar.navigationIcon?.setTint(
+            getColor(android.R.color.white)
+        )
+
         val student: Student? =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 intent.getParcelableExtra(EXTRA_STUDENT, Student::class.java)
@@ -28,31 +34,24 @@ class EditStudentActivity : AppCompatActivity() {
 
         val position = intent.getIntExtra(EXTRA_POSITION, -1)
 
-
-        // Validate received data
-        if (student == null) {
-            Log.e("EditStudentActivity", "Student is null - closing activity")
+        if (student == null || position == -1) {
             finish()
             return
         }
 
-        if (position == -1) {
-            Log.e("EditStudentActivity", "Invalid position - closing activity")
-            finish()
-            return
-        }
-
-
+        // Fill fields
         binding.etName.setText(student.name)
         binding.etId.setText(student.id)
+        binding.etAddress.setText(student.address)   // requires Student.address
+        binding.etPhone.setText(student.phone)       // requires Student.phone
         binding.cbSelected.isChecked = student.isSelected
-
 
         binding.btnUpdate.setOnClickListener {
             val newName = binding.etName.text.toString().trim()
             val newId = binding.etId.text.toString().trim()
+            val newAddress = binding.etAddress.text.toString().trim()
+            val newPhone = binding.etPhone.text.toString().trim()
             val newSelected = binding.cbSelected.isChecked
-
 
             if (newName.isEmpty() || newId.isEmpty()) {
                 AlertDialog.Builder(this)
@@ -63,13 +62,13 @@ class EditStudentActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
             val updatedStudent = student.copy(
                 name = newName,
                 id = newId,
+                address = newAddress,
+                phone = newPhone,
                 isSelected = newSelected
             )
-
 
             val data = Intent().apply {
                 putExtra(EXTRA_POSITION, position)
@@ -80,7 +79,6 @@ class EditStudentActivity : AppCompatActivity() {
             finish()
         }
 
-        
         binding.btnDelete.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Delete student")
@@ -96,6 +94,12 @@ class EditStudentActivity : AppCompatActivity() {
                 .setNegativeButton("Cancel", null)
                 .show()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        setResult(RESULT_CANCELED)
+        finish()
+        return true
     }
 
     companion object {
