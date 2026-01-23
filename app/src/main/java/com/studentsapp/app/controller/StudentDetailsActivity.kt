@@ -1,5 +1,6 @@
 package com.studentsapp.app.controller
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ class StudentDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStudentDetailsBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStudentDetailsBinding.inflate(layoutInflater)
